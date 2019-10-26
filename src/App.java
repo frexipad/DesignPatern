@@ -1,13 +1,13 @@
+import cofeeshop.Expresso;
+import composite.Component;
+import composite.File;
+import composite.Folder;
 import dpObservable.*;
 import employer.Belgian;
 import employer.Employe;
 import patternStratigy.*;
 import person.Chevallier;
 import person.Personnage;
-import person.Roi;
-import strategies.ComportementFleche;
-import strategies.ComportementHache;
-import strategies.Comportementpoignard;
 import test.Chat;
 import test.Cxt;
 import test2.Cxt2;
@@ -68,10 +68,38 @@ public class App {
         System.out.println("*****************Observable*******************************************");
 
         meteo.addSubscribe(o1);
-        ((MeteoImpl) meteo).setState(10);
-        ((MeteoImpl) meteo).setState(20);
-        ((MeteoImpl) meteo).setState(30);
-        ((MeteoImpl) meteo).setState(30);
+        o1.update(meteo);
+        ((MeteoImpl) meteo).setState(2);
+
+        Expresso expresso =new Expresso() {
+            @Override
+            public String toString() {
+                return super.toString();
+            }
+        };
+        expresso.setChocolat(true);
+        expresso.setCaramel(true);
+        System.out.println(expresso.getPrix());
+
+        System.out.println("**************************Composite***************************************");
+
+        Folder root =new Folder("root");
+        Component f1 =new Folder("Création");
+        Component f2 =new Folder("Structure");
+        Component f3 =new Folder("Comportement");
+        Component folder2=new Folder("Folder2");
+        Component folder3=new Folder("Folder3");
+        root.addComponent(f1);
+        root.addComponent(f2);
+        root.addComponent(f3);
+
+        ((Folder) f1).addComponent(new File("File 11"));
+        root.vieuw();
+
+
+
+
+
 
 
 
