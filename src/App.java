@@ -1,3 +1,7 @@
+import adapter.Adapter;
+import adapter.Client;
+import adapter.StandardImpl1;
+import adapter.StandardImpl2;
 import cofeeshop.Expresso;
 import composite.Component;
 import composite.File;
@@ -95,6 +99,16 @@ public class App {
 
         ((Folder) f1).addComponent(new File("File 11"));
         root.vieuw();
+
+        Client client =new Client();
+        client.setStandard(new StandardImpl1());
+        client.process(4,5);
+
+        client.setStandard(new StandardImpl2());
+        client.process(4,5);
+
+        client.setStandard(new Adapter());
+        client.process(4,5);
 
 
 
